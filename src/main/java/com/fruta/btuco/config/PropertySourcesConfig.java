@@ -9,17 +9,16 @@ import org.springframework.core.io.Resource;
 @Configuration
 public class PropertySourcesConfig {
 
-    private static final Resource[] PROPERTIES_RESOURCES = new ClassPathResource[]{
-            new ClassPathResource("btuco.properties"),
-    };
+	private static final Resource[] PROPERTIES_RESOURCES = new ClassPathResource[] { new ClassPathResource("btuco.properties"),
+			new ClassPathResource("frontend.properties"), };
 
-    public static class DefaultConfig {
-        @Bean
-        public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-            PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
-            pspc.setLocations(PROPERTIES_RESOURCES);
-            return pspc;
-        }
-    }
+	public static class DefaultConfig {
+		@Bean
+		public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+			PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
+			pspc.setLocations(PROPERTIES_RESOURCES);
+			return pspc;
+		}
+	}
 
 }
