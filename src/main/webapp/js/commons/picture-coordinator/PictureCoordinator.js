@@ -1,6 +1,7 @@
-var commons = commons || {};
-commons.components = commons.components || {};
-commons.components.PictureCoordinator = function(c, params){
+var btuco = btuco || {};
+btuco.commons = btuco.commons || {};
+btuco.commons.pictures = btuco.commons.pictures || {};
+btuco.commons.pictures.PictureCoordinator = function(c, params){
 	params = $.extend({
 		$formPictures : null
 	}, params);
@@ -46,7 +47,7 @@ commons.components.PictureCoordinator = function(c, params){
 		clearPictures();
 		
 		for(var i = 0; i < input.files.length; i++){
-			pictures.push(new commons.components.Picture($pictures, {
+			pictures.push(new btuco.commons.pictures.Picture($pictures, {
 				pictureData : input.files[i]
 			}));
 		}
@@ -63,18 +64,16 @@ commons.components.PictureCoordinator = function(c, params){
 	};
 	
 	this.toJSON = function(){
-		var picturesFiles = [], picturesMetadata = [];
+		var picturesFiles = [], picturesCenters = [];
 		
 		for(var i = 0; i < pictures.length; i++){
 			picturesFiles.push(pictures[i].getParams().pictureData);
-			picturesMetadata.push({
-				'center' : pictures[i].getParams().center
-			});
+			picturesCenters.push(pictures[i].getParams().center);
 		}
 		
 		return {
 			'pictures' : picturesFiles,
-			'metadata' : picturesMetadata
+			'centers' : picturesCenters
 		};
 	};
 	

@@ -1,9 +1,13 @@
-var commons = commons || {};
-commons.components = commons.components || {};
-commons.components.Picture = function(c, params){
+var btuco = btuco || {};
+btuco.commons = btuco.commons || {};
+btuco.commons.pictures = btuco.commons.pictures || {};
+btuco.commons.pictures.Picture = function(c, params){
 	params = $.extend({
 		pictureData : null,
-		center : null
+		center : {
+			x : null,
+			y : null
+		}
 	}, params);
 
 	var 
@@ -56,7 +60,8 @@ commons.components.Picture = function(c, params){
 	    var relativeX = (e.pageX - offset.left);
 	    var relativeY = (e.pageY - offset.top);
 
-	    params.center = [relativeX, relativeY];
+	    params.center.x = relativeX;
+	    params.center.y = relativeY;
 	    
 	    $dot.css('left', e.pageX);
 	    $dot.css('top', e.pageY);

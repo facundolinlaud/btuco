@@ -1,6 +1,6 @@
 var btuco = btuco || {};
-btuco.uploader = btuco.uploader || {};
-btuco.uploader.Uploader = $(function(){
+btuco.upload = btuco.upload || {};
+btuco.upload.Upload = $(function(){
 	
 	var pictureCoordinator = null;
 	
@@ -16,7 +16,7 @@ btuco.uploader.Uploader = $(function(){
 	var initPictureCoordinator = function(){
 		var $c = $('.picture-coordinator');
 		
-		pictureCoordinator = new commons.components.PictureCoordinator($c, {
+		pictureCoordinator = new btuco.commons.pictures.PictureCoordinator($c, {
 			$formPictures : $('input.pictures')
 		});
 	}
@@ -38,30 +38,54 @@ btuco.uploader.Uploader = $(function(){
 	/*
 	 * Control
 	 */
-	
+
 	var updatePictures = function(){
+		sendFormData2(buildFormData());
+	};
+	
+	var buildFormData = function(){
 		var formData = new FormData();
 		
 		var files = pictureCoordinator.toJSON();
-		formData.append('metadata', JSON.stringify(files.metadata));
 		
 		for(var i = 0; i < files.pictures.length; i++){
 			var picture = files.pictures[i];
-			
 			formData.append('pictures[]', picture, picture.name);
+			
+			var center = files.centers[i];
+			formData.append('centers[]', center.x + ";" + center.y);
 		}
 		
+		return formData;
+	};
+	
+	var sendFormData = function(formData){
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', '/backoffice/upload', true);
-		xhr.onload = function () {
+		xhr.onload = function (){
 			if (xhr.status === 200) {
 				console.log("done")
 			} else {
 				alert('An error occurred!');
 			}
 		};
+		
 		xhr.send(formData);
-	};
+	}
+	
+	var sendFormData2 = function(formData){
+		$.ajax({
+			url: '/backoffice/upload',
+			data: formData,
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(data){
+			console.log("ok");
+			console.log(data);
+			}
+		});
+	}
 	
 	init();
 });

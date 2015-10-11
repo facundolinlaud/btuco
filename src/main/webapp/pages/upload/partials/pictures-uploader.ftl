@@ -4,6 +4,6 @@
 
 <form id="picturesForm" runat="server">
 	<input type='file' name='pictures[]' class='pictures' multiple/>
-	<input type='text' name='metadata'/>
+	<input type='hidden' name='centers[]'/>
 	<input type='submit'/>
 </form>
