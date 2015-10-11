@@ -62,5 +62,21 @@ commons.components.PictureCoordinator = function(c, params){
 		}
 	};
 	
+	this.toJSON = function(){
+		var picturesFiles = [], picturesMetadata = [];
+		
+		for(var i = 0; i < pictures.length; i++){
+			picturesFiles.push(pictures[i].getParams().pictureData);
+			picturesMetadata.push({
+				'center' : pictures[i].getParams().center
+			});
+		}
+		
+		return {
+			'pictures' : picturesFiles,
+			'metadata' : picturesMetadata
+		};
+	};
+	
 	init();
 };

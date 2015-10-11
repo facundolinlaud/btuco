@@ -1,15 +1,29 @@
 package com.fruta.btuco.model;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class UploadedPicture {
-	private MultipartFile picture;
+	private String metadata;
 
-	public MultipartFile getPicture() {
-		return picture;
+	public String getMetadata() {
+		return metadata;
 	}
 
-	public void setPicture(MultipartFile picture) {
-		this.picture = picture;
+	public void setMetadata(String metadata) {
+		this.metadata = metadata;
 	}
+
+	@Override
+	public String toString() {
+		return "UploadedPicture [metadata=" + metadata + "]";
+	}
+
+	// private MultipartFile picture;
+	//
+	// public MultipartFile getPicture() {
+	// return picture;
+	// }
+	//
+	// public void setPicture(MultipartFile picture) {
+	// this.picture = picture;
+	// }
 }

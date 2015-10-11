@@ -70,5 +70,9 @@ commons.components.Picture = function(c, params){
 		$e.remove();
 	};
 	
+	this.getParams = function(){
+		return params;
+	};
+	
 	init();
 }
