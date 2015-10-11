@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "backoffice")
+@RequestMapping(value = "backoffice/upload")
 public class UploaderController {
 	private static final String UPLOADER = "uploader/uploader";
 
 	// private ImagesService imagesService;
 
-	@RequestMapping(value = "/uploader", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String getUploader(Model m) {
 		// m.addAttribute("students", studentService.findAll());
 		return UPLOADER;

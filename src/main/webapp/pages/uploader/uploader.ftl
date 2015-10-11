@@ -5,4 +5,7 @@
 </#assign>
 
 <@macros.frame head>
+	<#include "/uploader/partials/pictures-uploader.ftl">
+	
+	<div class="picture-coordinator"></div>
 </@macros.frame>

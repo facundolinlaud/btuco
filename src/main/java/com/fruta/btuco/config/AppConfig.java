@@ -6,4 +6,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = "com.fruta.btuco")
 public class AppConfig {
+
 }
