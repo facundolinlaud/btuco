@@ -9,8 +9,9 @@ import org.springframework.core.io.Resource;
 @Configuration
 public class PropertySourcesConfig {
 
-	private static final Resource[] PROPERTIES_RESOURCES = new ClassPathResource[] { new ClassPathResource("btuco.properties"),
-			new ClassPathResource("frontend.properties"), };
+	private static final Resource[] PROPERTIES_RESOURCES = new ClassPathResource[] {
+		new ClassPathResource("btuco.properties"),
+	};
 
 	public static class DefaultConfig {
 		@Bean
