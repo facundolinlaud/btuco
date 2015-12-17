@@ -40,40 +40,26 @@ btuco.upload.Upload = $(function(){
 	 */
 
 	var updatePictures = function(){
-		sendFormData2(buildFormData());
+		sendFormData(buildFormData());
 	};
-	
+
 	var buildFormData = function(){
 		var formData = new FormData();
-		
+
 		var files = pictureCoordinator.toJSON();
-		
+
 		for(var i = 0; i < files.pictures.length; i++){
 			var picture = files.pictures[i];
 			formData.append('pictures[]', picture, picture.name);
-			
+
 			var center = files.centers[i];
 			formData.append('centers[]', center.x + ";" + center.y);
 		}
-		
+
 		return formData;
 	};
-	
+
 	var sendFormData = function(formData){
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '/backoffice/upload', true);
-		xhr.onload = function (){
-			if (xhr.status === 200) {
-				console.log("done")
-			} else {
-				alert('An error occurred!');
-			}
-		};
-		
-		xhr.send(formData);
-	}
-	
-	var sendFormData2 = function(formData){
 		$.ajax({
 			url: '/backoffice/upload',
 			data: formData,

@@ -3,70 +3,50 @@ btuco.commons = btuco.commons || {};
 btuco.commons.pictures = btuco.commons.pictures || {};
 btuco.commons.pictures.Picture = function(c, params){
 	params = $.extend({
-		pictureData : null,
-		center : {
-			x : null,
-			y : null
-		}
+		pictureData : null
 	}, params);
 
 	var 
 		$c = $(c),
 		$e = null,
 		$img = null,
-		$dot = null;
-	
+		canvas = null;
+
 	/*
 	 * Initialization
 	 */
 	
 	var init = function(){
 		draw();
+		loadCanvas();
 		loadPicture();
-		initListeners();
 	};
 	
 	var draw = function(){
-		$e = $('<div></div>');
-		$img = $('<img src>');
-		$dot = $(
-			'<label style="background-color: red; width: 5px; height: 5px;' +
-			'border-radius: 5px; display: inline-block; position: absolute;"></label>'
-		);
-		
-		$c.append($e.append($img).append($dot));
+		$e = $('<div style="position: relative"></div>');
+		$img = $('<img draggable="false" src>');
+
+		$c.append($e.append($img));
 	};
-	
+
 	var loadPicture = function(){
 		var reader = new FileReader();
 		
 		reader.onload = function (e) {
             $img.attr('src', e.target.result);
+            loadCanvas($img.width(), $img.height());
         }
 		
 		reader.readAsDataURL(params.pictureData);
 	};
-	
-	var initListeners = function(){
-		$img.on('click', onImageClick);
-	};
-	
-	/*
-	 * Events
-	 */
-	
-	var onImageClick = function(e){
-		var offset = $(this).offset();
-	    var relativeX = (e.pageX - offset.left);
-	    var relativeY = (e.pageY - offset.top);
 
-	    params.center.x = relativeX;
-	    params.center.y = relativeY;
-	    
-	    $dot.css('left', e.pageX);
-	    $dot.css('top', e.pageY);
-	};
-	
+	var loadCanvas = function(width, height){
+        canvas = new btuco.commons.pictures.PictureCanvas($e, {
+            width: width,
+            height: height
+        });
+    };
+
 	/*
 	 * Control
 	 */
@@ -76,7 +56,10 @@ btuco.commons.pictures.Picture = function(c, params){
 	};
 	
 	this.getParams = function(){
-		return params;
+	    var extendedParams = $.extend(true, {}, params);
+		extendedParams.square = canvas.getSquare();
+
+		return extendesParams;
 	};
 	
 	init();
