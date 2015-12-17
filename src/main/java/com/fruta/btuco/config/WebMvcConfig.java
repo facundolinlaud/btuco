@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
@@ -31,6 +32,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         objectMapper.registerModule(this.getModule());
         converter.setObjectMapper(objectMapper);
         converters.add(converter);
+
+        /* For pictures return */
+        BufferedImageHttpMessageConverter bufferedImageHttpMessageConverter = new BufferedImageHttpMessageConverter();
+        converters.add(bufferedImageHttpMessageConverter);
+
         super.configureMessageConverters(converters);
     }
 

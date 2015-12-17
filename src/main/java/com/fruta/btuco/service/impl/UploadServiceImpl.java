@@ -31,7 +31,9 @@ public class UploadServiceImpl implements UploadService {
 	}
 
 	private void saveToDatabase(Picture picture) {
-		PictureMetadata pictureMetadata = new PictureMetadata(picture.getFile().getOriginalFilename(), picture.getCenter());
+		String pictureName = picture.getFile().getOriginalFilename();
+		PictureMetadata pictureMetadata = new PictureMetadata(pictureName, picture.getCenter());
+
 		picturesDao.save(pictureMetadata);
 	}
 

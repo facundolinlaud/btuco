@@ -19,7 +19,7 @@ public class EmbeddedJetty {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedJetty.class);
     
     private static final int PORT = 9290;
-    
+
     private static final String CONTEXT_PATH = "/";
     private static final String CONFIG_LOCATION_PACKAGE = "com.fruta.btuco.config";
     private static final String MAPPING_URL = "/";

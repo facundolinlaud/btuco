@@ -1,7 +1,5 @@
 package com.fruta.btuco.config;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,18 +15,12 @@ import com.fruta.btuco.exceptions.ResourceAlreadyExistsException;
 import com.fruta.btuco.exceptions.ResourceNotFoundException;
 import com.fruta.btuco.model.ErrorResponse;
 
+import java.io.IOException;
+
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalControllerExceptionHandler.class);
-
-	@ExceptionHandler(value = IOException.class)
-	@ResponseStatus(value = HttpStatus.I_AM_A_TEAPOT)
-	@ResponseBody
-	public ErrorResponse handleIOException(Exception e) {
-		LOGGER.error("Internal error", e);
-		return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.toString());
-	}
 
 	@ExceptionHandler(value = IllegalStateException.class)
 	@ResponseStatus(value = HttpStatus.I_AM_A_TEAPOT)

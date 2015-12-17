@@ -19,7 +19,7 @@ import com.fruta.btuco.transformer.TriadicTransformer;
 @Controller
 @RequestMapping(value = "backoffice/upload")
 public class UploadController {
-	private static final String UPLOADER = "upload/upload";
+	private static final String UPLOAD_VIEW = "upload/upload";
 
 	@Autowired
 	private UploadService uploadService;
@@ -29,7 +29,7 @@ public class UploadController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getBackoffice(Model m) {
-		return UPLOADER;
+		return UPLOAD_VIEW;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
