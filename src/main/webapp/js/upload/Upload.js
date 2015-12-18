@@ -51,10 +51,9 @@ btuco.upload.Upload = $(function(){
 		for(var i = 0; i < files.pictures.length; i++){
 			var picture = files.pictures[i];
 			formData.append('pictures[]', picture, picture.name);
-
-			var center = files.centers[i];
-			formData.append('centers[]', center.x + ";" + center.y);
 		}
+
+        formData.append('squares', JSON.stringify(files.squares));
 
 		return formData;
 	};
@@ -67,8 +66,7 @@ btuco.upload.Upload = $(function(){
 			contentType: false,
 			type: 'POST',
 			success: function(data){
-			console.log("ok");
-			console.log(data);
+                console.log("200");
 			}
 		});
 	}

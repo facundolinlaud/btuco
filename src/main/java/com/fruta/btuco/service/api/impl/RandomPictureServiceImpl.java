@@ -1,8 +1,8 @@
-package com.fruta.btuco.service.impl;
+package com.fruta.btuco.service.api.impl;
 
 import com.fruta.btuco.dao.PicturesDao;
 import com.fruta.btuco.model.PictureMetadata;
-import com.fruta.btuco.service.RandomPictureService;
+import com.fruta.btuco.service.api.RandomPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

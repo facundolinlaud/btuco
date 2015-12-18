@@ -1,4 +1,4 @@
-package com.fruta.btuco.service.impl;
+package com.fruta.btuco.service.backoffice.impl;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import com.fruta.btuco.dao.PicturesDao;
 import com.fruta.btuco.model.Picture;
 import com.fruta.btuco.model.PictureMetadata;
 import com.fruta.btuco.service.FileService;
-import com.fruta.btuco.service.UploadService;
+import com.fruta.btuco.service.backoffice.UploadService;
 
 @Service
 public class UploadServiceImpl implements UploadService {
@@ -32,7 +32,7 @@ public class UploadServiceImpl implements UploadService {
 
 	private void saveToDatabase(Picture picture) {
 		String pictureName = picture.getFile().getOriginalFilename();
-		PictureMetadata pictureMetadata = new PictureMetadata(pictureName, picture.getCenter());
+		PictureMetadata pictureMetadata = new PictureMetadata(pictureName, picture.getSquare());
 
 		picturesDao.save(pictureMetadata);
 	}

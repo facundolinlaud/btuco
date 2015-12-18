@@ -1,21 +1,18 @@
 package com.fruta.btuco.model;
 
-import java.awt.Point;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class Picture {
 	private MultipartFile file;
-	private Point center;
+	private Square square;
 
 	public Picture() {
 		super();
 	}
 
-	public Picture(MultipartFile file, Point center) {
-		super();
+	public Picture(MultipartFile file, Square square) {
 		this.file = file;
-		this.center = center;
+		this.square = square;
 	}
 
 	public MultipartFile getFile() {
@@ -26,16 +23,19 @@ public class Picture {
 		this.file = file;
 	}
 
-	public Point getCenter() {
-		return center;
+	public Square getSquare() {
+		return square;
 	}
 
-	public void setCenter(Point center) {
-		this.center = center;
+	public void setSquare(Square square) {
+		this.square = square;
 	}
 
 	@Override
 	public String toString() {
-		return "Picture [file=" + file + ", center=" + center + "]";
+		return "Picture{" +
+				"file=" + file +
+				", square=" + square +
+				'}';
 	}
 }

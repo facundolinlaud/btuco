@@ -1,15 +1,18 @@
 package com.fruta.btuco.service.impl;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import com.fruta.btuco.model.PictureMetadata;
 import com.fruta.btuco.service.PicturePathService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fruta.btuco.service.FileService;
+
+import javax.imageio.ImageIO;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -29,17 +32,13 @@ public class FileServiceImpl implements FileService {
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private File multipartFileToFile(MultipartFile multipartFile) {
-		File file = new File(multipartFile.getOriginalFilename());
+	@Override
+	public BufferedImage getImage(PictureMetadata picture) {
 		try {
-			multipartFile.transferTo(file);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
+			return ImageIO.read(new File(picturePathService.buildPicturePath(picture)));
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
-
-		return file;
 	}
 }

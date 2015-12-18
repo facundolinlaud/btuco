@@ -62,19 +62,19 @@ btuco.commons.pictures.PictureCoordinator = function(c, params){
 			pictures.pop().destroy();
 		}
 	};
-	
+
 	this.toJSON = function(){
-		var picturesFiles = [], picturesCenters = [];
-		
+		var picturesFiles = [], picturesSquares = [];
+
 		for(var i = 0; i < pictures.length; i++){
-			picturesFiles.push(pictures[i].getParams().pictureData);
-			picturesCenters.push(pictures[i].getParams().center);
-		}
-		
-		return {
-			'pictures' : picturesFiles,
-			'centers' : picturesCenters
-		};
+            picturesFiles.push(pictures[i].getParams().pictureData);
+            picturesSquares.push(pictures[i].getParams().square);
+        }
+
+        return {
+            'pictures' : picturesFiles,
+            'squares' : picturesSquares
+        };
 	};
 	
 	init();

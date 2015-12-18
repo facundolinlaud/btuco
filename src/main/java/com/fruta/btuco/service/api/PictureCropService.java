@@ -1,4 +1,4 @@
-package com.fruta.btuco.service;
+package com.fruta.btuco.service.api;
 
 import com.fruta.btuco.model.PictureMetadata;
 

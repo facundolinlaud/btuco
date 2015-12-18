@@ -1,19 +1,18 @@
 package com.fruta.btuco.model;
 
-import java.awt.Point;
-
 import org.springframework.data.annotation.Id;
+
+import java.awt.*;
 
 public class PictureMetadata implements Resource {
 	@Id
 	private String id;
 	private String name;
-	private Point center;
+	private Square square;
 
-	public PictureMetadata(String name, Point center) {
-		super();
+	public PictureMetadata(String name, Square square) {
 		this.name = name;
-		this.center = center;
+		this.square = square;
 	}
 
 	public String getId() {
@@ -32,16 +31,20 @@ public class PictureMetadata implements Resource {
 		this.name = name;
 	}
 
-	public Point getCenter() {
-		return center;
+	public Square getSquare() {
+		return square;
 	}
 
-	public void setCenter(Point center) {
-		this.center = center;
+	public void setSquare(Square square) {
+		this.square = square;
 	}
 
 	@Override
 	public String toString() {
-		return "PictureMetadata [id=" + id + ", name=" + name + ", center=" + center + "]";
+		return "PictureMetadata{" +
+				"id='" + id + '\'' +
+				", name='" + name + '\'' +
+				", square=" + square +
+				'}';
 	}
 }

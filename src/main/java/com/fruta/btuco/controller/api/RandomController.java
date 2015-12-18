@@ -1,6 +1,7 @@
 package com.fruta.btuco.controller.api;
 
-import com.fruta.btuco.service.RandomService;
+import com.fruta.btuco.model.ActionParams;
+import com.fruta.btuco.service.api.RandomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -20,10 +22,13 @@ public class RandomController {
     private RandomService randomService;
 
     @RequestMapping(headers = "Accept=image/jpeg, image/jpg, image/png, image/gif", method = RequestMethod.GET)
-    public @ResponseBody BufferedImage getRandomPicture(@RequestParam(value = "width", required = false) Integer width, @RequestParam(value = "height", required = false) Integer height) throws IOException {
-        String path = randomService.getPicture(width, height);
-        InputStream inputStream = new FileInputStream(path);
+    public @ResponseBody BufferedImage getRandomPicture(
+            @RequestParam(value = "faceWidth", required = false) Integer faceWidth,
+            @RequestParam(value = "faceHeight", required = false) Integer faceHeight,
+            @RequestParam(value = "pictureWidth", required = false) Integer pictureWidth,
+            @RequestParam(value = "pictureHeight", required = false) Integer pictureHeight) throws IOException {
 
-        return ImageIO.read(inputStream);
+        ActionParams params = new ActionParams(faceWidth, faceHeight, pictureWidth, pictureHeight);
+        return randomService.getPicture(params);
     }
 }

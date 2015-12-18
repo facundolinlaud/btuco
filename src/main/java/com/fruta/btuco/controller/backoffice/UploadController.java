@@ -1,7 +1,11 @@
 package com.fruta.btuco.controller.backoffice;
 
-import java.util.List;
-
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fruta.btuco.model.Picture;
+import com.fruta.btuco.model.Square;
+import com.fruta.btuco.service.backoffice.UploadService;
+import com.fruta.btuco.transformer.TriadicTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -12,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fruta.btuco.model.Picture;
-import com.fruta.btuco.service.UploadService;
-import com.fruta.btuco.transformer.TriadicTransformer;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "backoffice/upload")
@@ -25,7 +28,7 @@ public class UploadController {
 	private UploadService uploadService;
 
 	@Autowired
-	private TriadicTransformer<List<MultipartFile>, List<String>, List<Picture>> picturesTransformer;
+	private TriadicTransformer<List<MultipartFile>, List<Square>, List<Picture>> picturesTransformer;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getBackoffice(Model m) {
@@ -34,9 +37,13 @@ public class UploadController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void uploadPictures(@RequestParam(value = "pictures[]") List<MultipartFile> files,
-			@RequestParam(value = "centers[]") List<String> centers) {
-		List<Picture> pictures = picturesTransformer.transform(files, centers);
+	public void uploadPictures(@RequestParam(value = "pictures[]") List<MultipartFile> files, @RequestParam(value = "squares") String squares) throws IOException {
+		List<Picture> pictures = picturesTransformer.transform(files, squaresToList(squares));
 		uploadService.save(pictures);
+	}
+
+	private List<Square> squaresToList(String squares) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.readValue(squares, new TypeReference<List<Square>>(){});
 	}
 }

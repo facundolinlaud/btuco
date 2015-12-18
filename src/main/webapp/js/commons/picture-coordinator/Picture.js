@@ -59,7 +59,7 @@ btuco.commons.pictures.Picture = function(c, params){
 	    var extendedParams = $.extend(true, {}, params);
 		extendedParams.square = canvas.getSquare();
 
-		return extendesParams;
+		return extendedParams;
 	};
 	
 	init();
