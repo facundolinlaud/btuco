@@ -12,22 +12,18 @@ import java.awt.image.BufferedImage;
 public class PictureCropAction implements Action {
     @Override
     public BufferedImage apply(PictureMetadata metadata, BufferedImage image, ActionParams params) {
-        int w = params.getPictureWidth();
-        int h = params.getPictureHeight();
+        int futurePictureSize = params.getPictureSize();
+        int futureFaceCoverage = params.getFaceCoveragePercent();
+        float scale = (float) futurePictureSize / metadata.getSquare().getSize() * futureFaceCoverage / 100;
 
-        Integer faceWidth = params.getFaceWidth();
-        if(faceWidth != null) w += faceWidth;
+        int offset = (int)((futurePictureSize - (metadata.getSquare().getSize() * scale)) / 2);
+        int x = (int)(metadata.getSquare().getStartX() * scale) - offset;
+        int y = (int)(metadata.getSquare().getStartY() * scale) - offset;
 
-        Integer faceHeight = params.getFaceHeight();
-        if(faceHeight != null) h += faceHeight;
-
-        int x = (w - faceWidth) / 2;
-        int y = (h - faceHeight) / 2;
-
-        return crop(image, x, y, w, h);
+        return crop(image, x, y, futurePictureSize);
     }
 
-    private BufferedImage crop(BufferedImage before, int x, int y, int desiredWidth, int desiredHeight){
-        return before.getSubimage(x, y, desiredWidth, desiredHeight);
+    private BufferedImage crop(BufferedImage before, int x, int y, int desiredSize){
+        return before.getSubimage(x, y, desiredSize, desiredSize);
     }
 }

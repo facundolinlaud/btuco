@@ -1,23 +1,19 @@
 package com.fruta.btuco.model;
 
-import java.awt.*;
-
 /**
  * Created by facundo on 12/17/15.
  */
 public class Square {
     private int startX;
     private int startY;
-    private int width;
-    private int height;
+    private int size;
 
     public Square() {}
 
-    public Square(int startX, int startY, int width, int height) {
+    public Square(int startX, int startY, int size) {
         this.startX = startX;
         this.startY = startY;
-        this.width = width;
-        this.height = height;
+        this.size = size;
     }
 
     public int getStartX() {
@@ -36,27 +32,12 @@ public class Square {
         this.startY = startY;
     }
 
-    public int getWidth() {
-        return width;
+    public int getSize() {
+        return size;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Point getCenter(){
-        int x = startX + (width / 2);
-        int y = startY + (height / 2);
-
-        return new Point(x, y);
+    public void setSize(int size) {
+        this.size = size;
     }
 
     @Override
@@ -64,8 +45,7 @@ public class Square {
         return "Square{" +
                 "startX=" + startX +
                 ", startY=" + startY +
-                ", width=" + width +
-                ", height=" + height +
+                ", size=" + size +
                 '}';
     }
 }

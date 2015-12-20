@@ -58,10 +58,18 @@ btuco.commons.pictures.PictureCanvas = function(c, params){
     var onMouseMove = function(e){
         if (dragging) {
             var offset = $e.offset();
-            rect.width = (e.pageX - offset.left) - rect.startX;
-            rect.height = (e.pageY - offset.top) - rect.startY;
+
+            width = (e.pageX - offset.left) - rect.startX;
+            height = (e.pageY - offset.top) - rect.startY;
 
             clear();
+
+            if(width > height){
+                rect.size = width;
+            }else{
+                rect.size = height;
+            }
+
             refresh();
         }
     };
@@ -71,7 +79,7 @@ btuco.commons.pictures.PictureCanvas = function(c, params){
     };
 
     var refresh = function(){
-        ctx.strokeRect(rect.startX, rect.startY, rect.width, rect.height);
+        ctx.strokeRect(rect.startX, rect.startY, rect.size, rect.size);
     };
 
 	/*

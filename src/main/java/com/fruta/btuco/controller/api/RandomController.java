@@ -23,12 +23,10 @@ public class RandomController {
 
     @RequestMapping(headers = "Accept=image/jpeg, image/jpg, image/png, image/gif", method = RequestMethod.GET)
     public @ResponseBody BufferedImage getRandomPicture(
-            @RequestParam(value = "faceWidth", required = false) Integer faceWidth,
-            @RequestParam(value = "faceHeight", required = false) Integer faceHeight,
-            @RequestParam(value = "pictureWidth", required = false) Integer pictureWidth,
-            @RequestParam(value = "pictureHeight", required = false) Integer pictureHeight) throws IOException {
+            @RequestParam(value = "faceCoveragePercent", required = false) Integer faceCoveragePercent,
+            @RequestParam(value = "pictureSize", required = false) Integer pictureSize) throws IOException {
 
-        ActionParams params = new ActionParams(faceWidth, faceHeight, pictureWidth, pictureHeight);
+        ActionParams params = new ActionParams(faceCoveragePercent, pictureSize);
         return randomService.getPicture(params);
     }
 }

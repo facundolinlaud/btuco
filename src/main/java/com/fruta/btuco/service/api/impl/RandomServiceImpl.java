@@ -27,7 +27,7 @@ public class RandomServiceImpl implements RandomService {
     @Autowired
     private FileService fileService;
 
-    private List<Action> actions = Arrays.asList(new PictureCropAction(), new FaceFocusAction());
+    private List<Action> actions = Arrays.asList(new FaceFocusAction(), new PictureCropAction());
 
     @Override
     public BufferedImage getPicture(ActionParams params) {

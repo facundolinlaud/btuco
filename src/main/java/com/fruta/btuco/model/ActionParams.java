@@ -4,57 +4,35 @@ package com.fruta.btuco.model;
  * Created by facundo on 12/17/15.
  */
 public class ActionParams {
-    private Integer faceWidth;
-    private Integer faceHeight;
-    private Integer pictureWidth;
-    private Integer pictureHeight;
+    private int faceCoveragePercent;
+    private int pictureSize;
 
-    public ActionParams() {}
-
-    public ActionParams(Integer faceWidth, Integer faceHeight, Integer pictureWidth, Integer pictureHeight) {
-        this.faceWidth = faceWidth;
-        this.faceHeight = faceHeight;
-        this.pictureWidth = pictureWidth;
-        this.pictureHeight = pictureHeight;
+    public ActionParams(int faceCoveragePercent, int pictureSize) {
+        this.faceCoveragePercent = faceCoveragePercent;
+        this.pictureSize = pictureSize;
     }
 
-    public Integer getFaceWidth() {
-        return faceWidth;
+    public int getFaceCoveragePercent() {
+        return faceCoveragePercent;
     }
 
-    public void setFaceWidth(Integer faceWidth) {
-        this.faceWidth = faceWidth;
+    public void setFaceCoveragePercent(int faceCoveragePercent) {
+        this.faceCoveragePercent = faceCoveragePercent;
     }
 
-    public Integer getFaceHeight() {
-        return faceHeight;
+    public int getPictureSize() {
+        return pictureSize;
     }
 
-    public void setFaceHeight(Integer faceHeight) {
-        this.faceHeight = faceHeight;
-    }
-
-    public Integer getPictureWidth() {
-        return pictureWidth;
-    }
-
-    public void setPictureWidth(Integer pictureWidth) {
-        this.pictureWidth = pictureWidth;
-    }
-
-    public Integer getPictureHeight() {
-        return pictureHeight;
-    }
-
-    public void setPictureHeight(Integer pictureHeight) {
-        this.pictureHeight = pictureHeight;
+    public void setPictureSize(int pictureSize) {
+        this.pictureSize = pictureSize;
     }
 
     @Override
     public String toString() {
         return "ActionParams{" +
-                "faceWidth=" + faceWidth +
-                ", faceHeight=" + faceHeight +
+                "faceCoveragePercent=" + faceCoveragePercent +
+                ", pictureSize=" + pictureSize +
                 '}';
     }
 }
