@@ -7,6 +7,7 @@ import com.fruta.btuco.service.api.RandomPictureService;
 import com.fruta.btuco.service.api.RandomService;
 import com.fruta.btuco.service.api.actions.Action;
 import com.fruta.btuco.service.api.actions.impl.FaceFocusAction;
+import com.fruta.btuco.service.api.actions.impl.ColorizedAction;
 import com.fruta.btuco.service.api.actions.impl.PictureCropAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class RandomServiceImpl implements RandomService {
     @Autowired
     private FileService fileService;
 
-    private List<Action> actions = Arrays.asList(new FaceFocusAction(), new PictureCropAction());
+    private List<Action> actions = Arrays.asList(new FaceFocusAction(), new PictureCropAction(), new ColorizedAction());
 
     @Override
     public BufferedImage getPicture(ActionParams params) {
@@ -35,7 +36,9 @@ public class RandomServiceImpl implements RandomService {
         BufferedImage image = fileService.getImage(metadata);
 
         for(Action action : actions){
-            image = action.apply(metadata, image, params);
+            if(action.requiredParametersExist(params)){
+                image = action.apply(metadata, image, params);
+            }
         }
 
         return image;

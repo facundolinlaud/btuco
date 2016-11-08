@@ -6,10 +6,12 @@ package com.fruta.btuco.model;
 public class ActionParams {
     private int faceCoveragePercent;
     private int pictureSize;
+    private boolean colorized;
 
-    public ActionParams(int faceCoveragePercent, int pictureSize) {
+    public ActionParams(int faceCoveragePercent, int pictureSize, boolean colorized) {
         this.faceCoveragePercent = faceCoveragePercent;
         this.pictureSize = pictureSize;
+        this.colorized = colorized;
     }
 
     public int getFaceCoveragePercent() {
@@ -28,11 +30,20 @@ public class ActionParams {
         this.pictureSize = pictureSize;
     }
 
+    public boolean isColorized() {
+        return colorized;
+    }
+
+    public void setColorized(boolean colorized) {
+        this.colorized = colorized;
+    }
+
     @Override
     public String toString() {
         return "ActionParams{" +
                 "faceCoveragePercent=" + faceCoveragePercent +
                 ", pictureSize=" + pictureSize +
+                ", colorized=" + colorized +
                 '}';
     }
 }

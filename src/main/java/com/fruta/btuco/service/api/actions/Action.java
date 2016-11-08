@@ -10,4 +10,6 @@ import java.awt.image.BufferedImage;
  */
 public interface Action {
     BufferedImage apply(PictureMetadata metadata, BufferedImage image, ActionParams params);
+
+    boolean requiredParametersExist(ActionParams actionParams);
 }

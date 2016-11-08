@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by facundo on 12/17/15.
  */
-public class FaceFocusAction implements Action{
+public class FaceFocusAction extends DefaultAction{
     @Override
     public BufferedImage apply(PictureMetadata metadata, BufferedImage image, ActionParams params) {
         int futurePictureSize = params.getPictureSize();
